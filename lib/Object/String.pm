@@ -4,7 +4,7 @@ use utf8;
 
 package Object::String;
 use Unicode::Normalize;
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 # ABSTRACT: A Perl string object
 
@@ -446,7 +446,7 @@ Object::String - A Perl string object
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 DESCRIPTION
 
@@ -521,15 +521,15 @@ Returns the length of a string.
 
 Ensures the string is beginning with $prefix.
 
-    say str('dir')->ensure_left('/')->string; # /dir
-    say str('/dir')->ensure_left('/')->string; # /dir
+    say str('dir')->ensure_left('/')->string;   # /dir
+    say str('/dir')->ensure_left('/')->string;  # /dir
 
 =head2 ensure_right($suffix)
 
 Ensures the string is ending with $suffix.
 
-    say str('/dir')->ensure_right('/')->string; # /dir/
-    say str('/dir/')->ensure_right('/')->string; # /dir/
+    say str('/dir')->ensure_right('/')->string;     # /dir/
+    say str('/dir/')->ensure_right('/')->string;    # /dir/
 
 =head2 trim_left
 
@@ -576,23 +576,23 @@ An alias to C<repeat>.
 
 Tests if the string starts with $str.
 
-    str('test')->starts_with('te'); # true
-    str('test')->starts_with('z'); # false
+    str('test')->starts_with('te');     # true
+    str('test')->starts_with('z');      # false
 
 =head2 ends_with($str)
 
 Tests if the string ends with $str.
 
-    str('test')->ends_with('st'); # true
-    str('test')->ends_with('z'); # false
+    str('test')->ends_with('st');   # true
+    str('test')->ends_with('z');    # false
 
 =head2 contains($str)
 
 Tests if the string contains $str.
 Aliases: C<include>
 
-    str('test')->contains('es'); # true
-    str('test')->contains('z'); # false
+    str('test')->contains('es');    # true
+    str('test')->contains('z');     # false
 
 =head2 include($str)
 
@@ -622,31 +622,31 @@ Deletes the last character of the string. Same function as Perl's C<chop> functi
 
 Tests if the string is composed by numbers.
 
-    str('123')->is_numeric; # true
-    str('1.23')->is_numeric; # false
-    str('ab1')->is_numeric; # false
+    str('123')->is_numeric;     # true
+    str('1.23')->is_numeric;    # false
+    str('ab1')->is_numeric;     # false
 
 =head2 is_alpha
 
 Tests if the string is composed by alphabetic characters.
 
-    str('abc')->is_alpha; # true
-    str('a1b2c3')->is_alpha; # false
+    str('abc')->is_alpha;       # true
+    str('a1b2c3')->is_alpha;    # false
 
 =head2 is_alpha_numeric
 
 Tests if the string is composed only by letters and numbers.
 
-    str('abc')->is_alpha_numeric; # true
-    str('a1b2c3')->is_alpha_numeric; # true
-    str('1.3e10')->is_alpha_numeric; # false
+    str('abc')->is_alpha_numeric;       # true
+    str('a1b2c3')->is_alpha_numeric;    # true
+    str('1.3e10')->is_alpha_numeric;    # false
 
 =head2 is_lower
 
 Tests if a string is lower case.
 
     str('TEST')->is_lower; # false
-    str('test')->is_lower; $ true
+    str('test')->is_lower; # true
 
 =head2 is_upper
 
@@ -660,13 +660,13 @@ Tests if the string is upper case.
 Returns a boolean if the string is ON|OFF, YES|NO, TRUE|FALSE upper or lower case.
 Aliases: C<to_bool>
 
-    str('on')->to_boolean; # true
-    str('off')->to_boolean; # false
-    str('yes')->to_boolean; # true
-    str('no')->to_boolean; # false
-    str('true')->to_boolean; # true
-    str('false')->to_boolean; # false
-    str('test')->to_boolean; # undef
+    str('on')->to_boolean;      # true
+    str('off')->to_boolean;     # false
+    str('yes')->to_boolean;     # true
+    str('no')->to_boolean;      # false
+    str('true')->to_boolean;    # true
+    str('false')->to_boolean;   # false
+    str('test')->to_boolean;    # undef
 
 =head2 to_bool
 
@@ -676,11 +676,11 @@ An alias to C<to_boolean>.
 
 Tests if a string is empty. 
 
-    str('')->is_empty; # true
-    str(undef)->is_empty; # true
-    str('   ')->is_emtpy; # true
-    str("  \t\t  ")->is_empty; # true
-    str("aaa")->is_empty; false
+    str('')->is_empty;          # true
+    str(undef)->is_empty;       # true
+    str('   ')->is_emtpy;       # true
+    str("  \t\t  ")->is_empty;  # true
+    str("aaa")->is_empty;       # false
 
 =head2 count($str)
 
@@ -692,25 +692,25 @@ Counts the occurrences of $str in the string.
 
 Returns a substring of $count characters from the left.
 
-    say str('This is a test')->left(3)->string; # Thi
-    say str('This is a test')->left(-3)->string; # est
+    say str('This is a test')->left(3)->string;     # Thi
+    say str('This is a test')->left(-3)->string;    # est
 
 =head2 right($count)
 
 Returns a substring of $count characters from the right
 
-    say str('This is a test')->right(3)->string; # est
-    say str('This is a test')->right(-3)->string; # Thi
+    say str('This is a test')->right(3)->string;    # est
+    say str('This is a test')->right(-3)->string;   # Thi
 
 =head2 undersocre
 
 Converts the string to snake case.
 Aliases: C<underscored>
 
-    say str('thisIsATest')->underscore->string; # this_is_a_test
-    say str('ThisIsATest')->underscore->string; # _this_is_a_test
-    say str('This::IsATest')->underscore->string; # _this/is_a_test
-    say str('This Is A Test')->underscore->string; # this_is_a_test
+    say str('thisIsATest')->underscore->string;     # this_is_a_test
+    say str('ThisIsATest')->underscore->string;     # _this_is_a_test
+    say str('This::IsATest')->underscore->string;   # _this/is_a_test
+    say str('This Is A Test')->underscore->string;  # this_is_a_test
 
 =head2 underscored
 
@@ -720,19 +720,19 @@ An alias to underscore.
 
 Converts the string to a dasherized one.
 
-    say str('thisIsATest')->dasherize->string; # thisr-is-a-test
-    say str('ThisIsATest')->dasherize->string; # -this-is-a-test
-    say str('This::IsATest')->dasherize->string; # -this/is-a-test
-    say str('This Is A Test')->dasherize->string; # this-is-a-test
+    say str('thisIsATest')->dasherize->string;      # thisr-is-a-test
+    say str('ThisIsATest')->dasherize->string;      # -this-is-a-test
+    say str('This::IsATest')->dasherize->string;    # -this/is-a-test
+    say str('This Is A Test')->dasherize->string;   # this-is-a-test
 
 =head2 camelize
 
 Converts the string to a camelized one.
 
-    say str('this-is-a-test')->camelize->string; # thisIsATest
-    say str('_this_is_a_test')->camelize->string; # ThisIsATest
-    say str('_this/is/a-test')->camelize->string; # This::Is::ATest
-    say str('this is a test')->camelize->string; # thisIsATest
+    say str('this-is-a-test')->camelize->string;    # thisIsATest
+    say str('_this_is_a_test')->camelize->string;   # ThisIsATest
+    say str('_this/is/a-test')->camelize->string;   # This::Is::ATest
+    say str('this is a test')->camelize->string;    # thisIsATest
 
 =head2 latinise
 
@@ -759,16 +759,16 @@ Unescapes some HTML entities : &"'<>
 Searches for a substring within another from a position. If $position is
 not specified, it begins from 0.
 
-    say str('this is a test')->index_left('is'); # 2
-    say str('this is a test')->index_right('is', 3); # 5
+    say str('this is a test')->index_left('is');        # 2
+    say str('this is a test')->index_right('is', 3);    # 5
 
 =head2 index_right($substr, $position)
 
 Searches from right for a substring within another from a position. If $position 
 is not specified, it begins from 0.
 
-    say str('this is a test')->index_right('is'); # 5
-    say str('this is a test')->index_right('is', 5); # 2
+    say str('this is a test')->index_right('is');       # 5
+    say str('this is a test')->index_right('is', 5);    # 2
 
 =head2 replace_all($substr1, $substr2)
 
@@ -786,27 +786,27 @@ Transforms the input into a human friendly form.
 
 Pad left the string with $count $char.
 
-    say str('hello')->pad_left(3)->string; # hello
-    say str('hello')->pad_left(5)->string; # hello
-    say str('hello')->pad_left(10)->string; #      hello
-    say str('hello')->pad_left(10, '.')->string; # .....hello
+    say str('hello')->pad_left(3)->string;          # hello
+    say str('hello')->pad_left(5)->string;          # hello
+    say str('hello')->pad_left(10)->string;         #      hello
+    say str('hello')->pad_left(10, '.')->string;    # .....hello
 
 =head2 pad_right($count, $char)
 
 Pad right the string with $count $char.
 
-    say str('hello')->pad_right(3)->string; # hello
-    say str('hello')->pad_right(5)->string; # hello
-    say str('hello')->pad_right(10)->string; # "hello     "
-    say str('hello')->pad_left(10, '.')->string; # hello.....
+    say str('hello')->pad_right(3)->string;         # hello
+    say str('hello')->pad_right(5)->string;         # hello
+    say str('hello')->pad_right(10)->string;        # "hello     "
+    say str('hello')->pad_left(10, '.')->string;    # hello.....
 
 =head2 pad($count, $char)
 
 Pad the string with $count $char.
 
-    say str('hello')->pad(3)->string; # hello
-    say str('hello')->pad(5)->string; # hello
-    say str('hello')->pad(10)->string; # "   hello  "
+    say str('hello')->pad(3)->string;       # hello
+    say str('hello')->pad(5)->string;       # hello
+    say str('hello')->pad(10)->string;      # "   hello  "
     say str('hello')->pad(10, '.')->string; # ...hello..
 
 =head2 next
@@ -839,8 +839,8 @@ Swaps the case of the string.
 Concats multiple strings.
 Aliases: C<suffix>
 
-    say str('test')->concat('test')->string; # testtest
-    say str('test')->concat('test', 'test')->string; # testtesttest
+    say str('test')->concat('test')->string;            # testtest
+    say str('test')->concat('test', 'test')->string;    # testtesttest
 
 =head2 suffix($str1, ...)
 
@@ -850,8 +850,8 @@ An alias to C<concat>.
 
 Prefix the string with $str1, ...
 
-    say str('test')->prefix('hello')->string; # hellotest
-    say str('test')->prefix('hello', 'world'); # helloworldtest
+    say str('test')->prefix('hello')->string;   # hellotest
+    say str('test')->prefix('hello', 'world');  # helloworldtest
 
 =head2 reverse
 
@@ -876,15 +876,15 @@ Quotes meta characters.
 
 ROT13 transformation on the string.
 
-    say str('this is a test')->rot13->string; # guvf vf n grfg
-    say str('this is a test')->rot13->rot13->string; # this is a test
+    say str('this is a test')->rot13->string;           # guvf vf n grfg
+    say str('this is a test')->rot13->rot13->string;    # this is a test
 
 =head2 str
 
-Creates and returns a string object
+Creates and returns a string object.
 
-    str("test")->string               # test
-    str("test")->to_upper->string     # TEST
+    str("test")->string                     # test
+    str("test")->to_upper->string           # TEST
     str('this', 'is', 'a', 'test')->string; # this is a test
 
 =head1 AUTHOR
