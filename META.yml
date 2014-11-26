@@ -15,4 +15,4 @@ name: Object-String
 requires:
   Moo: '1.006001'
   Test::More: '1.001009'
-version: '0.01'
+version: '0.02'

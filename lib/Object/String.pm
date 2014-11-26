@@ -4,7 +4,7 @@ use utf8;
 
 package Object::String;
 use Unicode::Normalize;
-our $VERSION = '0.01'; # VERSION
+our $VERSION = '0.02'; # VERSION
 
 # ABSTRACT: A Perl string object
 
@@ -426,7 +426,7 @@ Object::String - A Perl string object
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 DESCRIPTION
 
@@ -497,16 +497,16 @@ Returns the length of a string.
 
     say str('test')->length; # 4
 
-=head2 ensure_left(prefix)
+=head2 ensure_left($prefix)
 
-Ensures the string is beginning with prefix.
+Ensures the string is beginning with $prefix.
 
     say str('dir')->ensure_left('/')->string; # /dir
     say str('/dir')->ensure_left('/')->string; # /dir
 
-=head2 ensure_right(suffix)
+=head2 ensure_right($suffix)
 
-Ensures the string is ending with suffix.
+Ensures the string is ending with $suffix.
 
     say str('/dir')->ensure_right('/')->string; # /dir/
     say str('/dir/')->ensure_right('/')->string; # /dir/
@@ -841,7 +841,7 @@ Reverses a string.
 
 =head2 str
 
-This function creates and returns a string object
+Creates and returns a string object
 
     str("test")->string               # test
     str("test")->to_upper->string     # TEST
