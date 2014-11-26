@@ -738,31 +738,31 @@ is(str('hello')->pad(10)->string, '   hello  ', 'pad "hello" with 10');
 is(str('hello')->pad(10, '.')->string, '...hello..', 'pad "hello" with 10 and "."');
 
 ##########
-#can_ok('Object::String', ('substring'));
+can_ok('Object::String', ('count_words'));
+is(str('hello world')->count_words, 2, 'count words in "hello world"');
+is(str("hello\tworld")->count_words, 2, 'count words in "hello\tworld"');
+is(str("hello \t world, Perl!")->count_words, 3, 'count words in "hello \t world, Perl!"');
 
 ##########
-#can_ok('Object::String', ('between'));
+can_ok('Object::String', ('quote_meta'));
+is(
+    str('hello world. (can you hear me?)')->quote_meta->string, 
+    'hello\ world\.\ \(can\ you\ hear\ me\?\)', 
+    'quote meta characters'
+);
 
 ##########
-#can_ok('Object::String', ('lines'));
-
-##########
-#can_ok('Object::String', ('strip'));
-
-##########
-#can_ok('Object::String', ('wrap_html'));
-
-##########
-#can_ok('Object::String', ('strip_tags'));
-
-##########
-#can_ok('Object::String', ('titleize'));
-
-##########
-# can_ok('Object::String', ('words'));
-
-##########
-# can_ok('Object::String', ('tr'));
+can_ok('Object::String', ('rot13'));
+is(
+    str('this is a test')->rot13->string, 
+    'guvf vf n grfg',
+    'rot13 on "this is a test"'
+);
+is(
+    str('this is a test')->rot13->rot13->string, 
+    'this is a test',
+    'rot13 2 times on "this is a test"'
+);
 
 ##########
 can_ok('Object::String', ('next'));

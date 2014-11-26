@@ -4,7 +4,7 @@ use utf8;
 
 package Object::String;
 use Unicode::Normalize;
-our $VERSION = '0.02'; # VERSION
+our $VERSION = '0.03'; # VERSION
 
 # ABSTRACT: A Perl string object
 
@@ -397,6 +397,26 @@ sub reverse {
     return $self;
 }
 
+
+sub count_words {
+    my $self = shift;
+    return scalar split /\s/, $self->clean->string;
+}
+
+
+sub quote_meta {
+    my $self = shift;
+    $self->{string} = quotemeta $self->string;
+    return $self;
+}
+
+
+sub rot13 {
+    my $self = shift;
+    $self->{string} =~ tr/A-Za-z/N-ZA-Mn-za-m/;
+    return $self;
+}
+
 no Moo;
 
 use base 'Exporter';
@@ -426,11 +446,11 @@ Object::String - A Perl string object
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 DESCRIPTION
 
-A string object for Perl5.
+A string object for Perl 5.
 
 C<Object::String> have a lot of "modern" features and supports method chaining. A helper is also provided to 
 help to build a string object.
@@ -839,6 +859,26 @@ Reverses a string.
 
     say str('test')->reverse->string; # tset
 
+=head2 count_words
+
+Counts the words in a string.
+
+    say str("this\tis a \t test")->count_words; # 4
+
+=head2 quote_meta
+
+Quotes meta characters.
+
+    # hello\ world\.\ \(can\ you\ hear\ me\?\)
+    say str('hello world. (can you hear me?)')->quote_meta->string; 
+
+=head2 rot13
+
+ROT13 transformation on the string.
+
+    say str('this is a test')->rot13->string; # guvf vf n grfg
+    say str('this is a test')->rot13->rot13->string; # this is a test
+
 =head2 str
 
 Creates and returns a string object
@@ -849,7 +889,7 @@ Creates and returns a string object
 
 =head1 AUTHOR
 
-Vincent BERZIN <berzinv@gmail.com>
+Vincent BERZIN <berzinv@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

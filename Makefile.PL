@@ -11,7 +11,7 @@ use ExtUtils::MakeMaker;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "A Perl string object",
-  "AUTHOR" => "Vincent BERZIN <berzinv\@gmail.com>",
+  "AUTHOR" => "Vincent BERZIN <berzinv\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
   },
@@ -23,7 +23,7 @@ my %WriteMakefileArgs = (
     "Moo" => "1.006001",
     "Test::More" => "1.001009"
   },
-  "VERSION" => "0.02",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }
