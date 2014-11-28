@@ -5,9 +5,9 @@ use v5.10;
 
 package Object::String;
 use Unicode::Normalize;
-our $VERSION = '0.05'; # VERSION
+our $VERSION = '0.06'; # VERSION
 
-# ABSTRACT: A Perl string object
+# ABSTRACT: A string object for Perl 5
 
 use Moo;
 
@@ -460,11 +460,11 @@ __END__
 
 =head1 NAME
 
-Object::String - A Perl string object
+Object::String - A string object for Perl 5
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 DESCRIPTION
 
@@ -695,7 +695,6 @@ An alias to C<to_boolean>.
 Tests if a string is empty. 
 
     str('')->is_empty;          # true
-    str(undef)->is_empty;       # true
     str('   ')->is_emtpy;       # true
     str("  \t\t  ")->is_empty;  # true
     str("aaa")->is_empty;       # false
@@ -720,7 +719,7 @@ Returns a substring of $count characters from the right
     say str('This is a test')->right(3)->string;    # est
     say str('This is a test')->right(-3)->string;   # Thi
 
-=head2 undersocre
+=head2 underscore
 
 Converts the string to snake case.
 Aliases: C<underscored>
@@ -756,7 +755,7 @@ Converts the string to a camelized one.
 
 Removes accents from Latin characters.
 
-    say str('où es-tu en été ?')->latinise->string; # ou es-tu en ete
+    say str('où es-tu en été ?')->latinise->string; # ou es-tu en ete ?
 
 =head2 escape_html
 

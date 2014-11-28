@@ -1,5 +1,5 @@
 ---
-abstract: 'A Perl string object'
+abstract: 'A string object for Perl 5'
 author:
   - 'Vincent BERZIN <berzinv@cpan.org>'
 build_requires: {}
@@ -15,4 +15,4 @@ name: Object-String
 requires:
   Moo: '1.006001'
   Test::More: '1.001009'
-version: '0.05'
+version: '0.06'
