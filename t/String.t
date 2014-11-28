@@ -773,5 +773,35 @@ is(str('z')->next->string, 'aa', 'next string after "z"');
 can_ok('Object::String', ('latinise'));
 is(str('àéèôöîïçûü')->latinise->string,'aeeooiicuu','remove accents');
 
+##########
+can_ok('Object::String', ('say'));
+is(str('test')->say, 1, 'say a string');
+
+##########
+can_ok('Object::String', ('titleize'));
+is(
+    str('this is a test')->titleize->string, 
+    'This Is A Test', 
+    'Titleize "this is a test"'
+);
+is(
+    str('Oh yeah! Test: titleize')->titleize->string,
+    'Oh Yeah Test Titleize',
+    'titleize "Oh yeah! Test: titleize'
+);
+
+##########
+can_ok('Object::String', ('titlecase'));
+is(
+    str('this is a test')->titlecase->string, 
+    'This Is A Test', 
+    'Titleize "this is a test"'
+);
+is(
+    str('Oh yeah! Test: titleize')->titlecase->string,
+    'Oh Yeah Test Titleize',
+    'titleize "Oh yeah! Test: titleize'
+);
+
 done_testing;
 

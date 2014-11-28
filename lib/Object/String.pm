@@ -1,10 +1,11 @@
 use strict;
 use warnings;
 use utf8;
+use v5.10;
 
 package Object::String;
 use Unicode::Normalize;
-our $VERSION = '0.04'; # VERSION
+our $VERSION = '0.05'; # VERSION
 
 # ABSTRACT: A Perl string object
 
@@ -417,6 +418,23 @@ sub rot13 {
     return $self;
 }
 
+
+sub say { CORE::say shift->string; }
+
+
+sub titleize {
+    my $self = shift;
+    $self->{string} = join ' ', map { str($_)->capitalize->string } 
+                                    split / /, 
+                                          $self->clean
+                                               ->strip_punctuation
+                                               ->string;
+    return $self;
+}
+
+
+sub titlecase { shift->titleize }
+
 no Moo;
 
 use base 'Exporter';
@@ -446,7 +464,7 @@ Object::String - A Perl string object
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 DESCRIPTION
 
@@ -878,6 +896,23 @@ ROT13 transformation on the string.
 
     say str('this is a test')->rot13->string;           # guvf vf n grfg
     say str('this is a test')->rot13->rot13->string;    # this is a test
+
+=head2 say
+
+Says the string.
+
+    str('this is a test')->say; # displays "this is a test\n"
+
+=head2 titleize
+
+Strips punctuation and capitalizes each word.
+Aliases: C<titlecase>
+
+    say str('this is a test')->titleize->string; # This Is A Test
+
+=head2 titlecase
+
+An alias to C<titleize>.
 
 =head2 str
 
