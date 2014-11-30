@@ -5,7 +5,7 @@ use v5.10;
 
 package Object::String;
 use Unicode::Normalize;
-our $VERSION = '0.06'; # VERSION
+our $VERSION = '0.07'; # VERSION
 
 # ABSTRACT: A string object for Perl 5
 
@@ -171,13 +171,13 @@ sub is_alpha_numeric { shift->string =~ /^[a-zA-Z0-9]+$/; }
 
 sub is_lower {
     my $self = shift;
-    return $self->string eq $self->to_lower->string;
+    return $self->string eq lc $self->string;
 }
 
 
 sub is_upper {
     my $self = shift;
-    return $self->string eq $self->to_upper->string;
+    return $self->string eq uc $self->string;
 }
 
 
@@ -464,7 +464,7 @@ Object::String - A string object for Perl 5
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 DESCRIPTION
 
