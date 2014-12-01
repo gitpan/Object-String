@@ -20,10 +20,12 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Object::String",
   "PREREQ_PM" => {
+    "List::Util" => "1.41",
     "Moo" => "1.006001",
-    "Test::More" => "1.001009"
+    "Test::More" => "1.001009",
+    "Unicode::Normalize" => "1.18"
   },
-  "VERSION" => "0.09",
+  "VERSION" => "0.10",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -32,8 +34,10 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "ExtUtils::MakeMaker" => 0,
+  "List::Util" => "1.41",
   "Moo" => "1.006001",
-  "Test::More" => "1.001009"
+  "Test::More" => "1.001009",
+  "Unicode::Normalize" => "1.18"
 );
 
 

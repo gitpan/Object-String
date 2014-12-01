@@ -13,6 +13,8 @@ meta-spec:
   version: '1.4'
 name: Object-String
 requires:
+  List::Util: '1.41'
   Moo: '1.006001'
   Test::More: '1.001009'
-version: '0.09'
+  Unicode::Normalize: '1.18'
+version: '0.10'

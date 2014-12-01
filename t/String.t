@@ -803,5 +803,31 @@ is(
     'titleize "Oh yeah! Test: titleize'
 );
 
+##########
+can_ok('Object::String', ('squeeze'));
+is(
+    str('woooaaaah, balls')->squeeze->string,
+    'woah, bals',
+    'squeeze "woooaaaah, balls"'
+);
+is(
+    str('woooaaaah, balls')->squeeze('a')->string,
+    'woaaaah, bals',
+    'squeeze "woooaaaah, balls" except letter "a"'
+);
+is(
+    str('woooaaaah, balls')->squeeze('l-o')->string,
+    'woooah, balls',
+    'squeeze "woooaaaah, balls" except letter "m-z"'
+);
+
+##########
+can_ok('Object::String', ('shuffle'));
+isnt(
+    str('this is a test')->shuffle->string,
+    'this is a test',
+    'shuffle "this is a test"'
+);
+
 done_testing;
 

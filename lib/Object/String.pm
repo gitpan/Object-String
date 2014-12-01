@@ -5,7 +5,9 @@ use v5.10;
 
 package Object::String;
 use Unicode::Normalize;
-our $VERSION = '0.09'; # VERSION
+use List::Util;
+
+our $VERSION = '0.10'; # VERSION
 
 # ABSTRACT: A string object for Perl 5
 
@@ -399,7 +401,10 @@ sub reverse {
 }
 
 
-sub count_words { 0 + split /\s/, shift->clean->string; }
+sub count_words {
+    my @arr = split /\s/, shift->clean->string;
+    return $#arr + 1;
+}
 
 
 sub quote_meta {
@@ -432,6 +437,25 @@ sub titleize {
 
 sub titlecase { shift->titleize }
 
+
+sub squeeze {
+    my ($self, $keep) = @_;
+    if(defined $keep) {
+        $self->{string} =~ eval "\$self->{string} =~ tr/$keep//cs";
+    }
+    else {
+        $self->{string} =~ eval "\$self->{string} =~ tr///cs";
+    }
+    return $self;
+}
+
+
+sub shuffle {
+    my $self = shift;
+    $self->{string} = join '', List::Util::shuffle split //, $self->string;
+    return $self;
+}
+
 no Moo;
 
 use base 'Exporter';
@@ -461,7 +485,7 @@ Object::String - A string object for Perl 5
 
 =head1 VERSION
 
-version 0.09
+version 0.10
 
 =head1 DESCRIPTION
 
@@ -909,6 +933,24 @@ Aliases: C<titlecase>
 =head2 titlecase
 
 An alias to C<titleize>.
+
+=head2 squeeze([$keep])
+
+Deletes all consecutive same characters with exceptions.
+
+    say str('woooaaaah, balls')->squeeze->string;         # woah, bals
+
+    # keep consecutive 'a' characters
+    say str('woooaaaah, balls')->squeeze->string;         # woaaaah, balls
+
+    # keep characters from 'l' to 'o'
+    say str('woooaaaah, balls')->squeze('l-o')->string;   # woooah, balls
+
+=head2 shuffle
+
+Shuffles a string.
+
+    say str('this is a test')->shuffle->string; # tsi  ssati the
 
 =head2 str
 
