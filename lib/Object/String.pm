@@ -5,7 +5,7 @@ use v5.10;
 
 package Object::String;
 use Unicode::Normalize;
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 # ABSTRACT: A string object for Perl 5
 
@@ -399,10 +399,7 @@ sub reverse {
 }
 
 
-sub count_words {
-    my $self = shift;
-    return scalar split /\s/, $self->clean->string;
-}
+sub count_words { split /\s/, shift->clean->string; }
 
 
 sub quote_meta {
@@ -464,7 +461,7 @@ Object::String - A string object for Perl 5
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 DESCRIPTION
 
